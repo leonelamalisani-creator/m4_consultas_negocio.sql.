@@ -4,7 +4,8 @@
 -- Tabla utilizada: ventas
 
 USE Ventas_Tech_DBB;
- --------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------
 -- CONSULTA 1 - RESUMEN EJECUTIVO MENSUAL
 -- Total facturado, cantidad de pedidos y ticket promedio,
 -- agrupados por mes.
@@ -18,7 +19,7 @@ FROM ventas
 GROUP BY EXTRACT(MONTH FROM fecha_venta)
 ORDER BY mes;
 
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
 -- CONSULTA 2 - RANKING DE PRODUCTOS
 -- Top 5 de productos por total facturado.
@@ -32,7 +33,7 @@ GROUP BY id_producto
 ORDER BY total_facturado DESC
 LIMIT 5;
 
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- CONSULTA 3 - CLIENTES RECURRENTES
 -- Clientes que realizaron más de un pedido.
 
@@ -45,7 +46,7 @@ GROUP BY id_cliente
 HAVING COUNT(*) > 1
 ORDER BY cantidad_pedidos DESC;
 
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- CONSULTA 4 - MESES POR ENCIMA / POR DEBAJO DEL PROMEDIO
 -- Compara la facturación de cada mes contra el promedio
 -- de facturación mensual.
@@ -71,16 +72,12 @@ SELECT
     END AS comparacion_promedio
 FROM facturacion_mensual
 ORDER BY mes;
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- BLOQUE DE CIERRE - HALLAZGOS
---------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
--- 1. El producto 1 fue el que mayor facturación generó,
---    alcanzando un total de $3600.
+-- 1. El producto 1 fue el que mayor facturación generó, alcanzando un total de $3600.
 
--- 2. Los clientes 1, 2, 3, 4 y 5 realizaron más de un pedido,
---    por lo que todos los clientes de la base son recurrentes.
+-- 2. Todos los clientes realizaron más de un pedido, por lo que todos en la base son recurrentes.
 
--- 3. Marzo concentró el 100% de las ventas registradas,
---    ya que todas las operaciones de la base corresponden
---    al mes 3.
+-- 3. Marzo concentró el 100% de las ventas registradas, ya que todas las operaciones de la base corresponden al mes 3.
